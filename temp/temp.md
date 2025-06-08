@@ -1,6 +1,3 @@
-# Scientific Article Ranking System
-
-A system for collecting, analyzing, and ranking scientific articles from various sources based on impact and relevance within specified timeframes.
 
 ## Project Structure
 
@@ -28,15 +25,3 @@ A system for collecting, analyzing, and ranking scientific articles from various
 - Citation analysis
 - Author influence metrics
 - RESTful API for data access
-
-## Setup
-
-(To be added)
-
-## Configuration
-
-(To be added)
-
-## API Documentation
-
-(To be added) 
