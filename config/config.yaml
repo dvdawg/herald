@@ -1,0 +1,35 @@
+# Herald Configuration File
+
+# Ranking configuration
+ranking:
+  # Weights for different ranking factors (must sum to 1.0)
+  weights:
+    relevance: 0.5  # Query relevance score
+    recency: 0.3    # Publication recency score
+    citations: 0.2  # Citation count score
+  
+  # Recency decay: articles older than this many days get very low scores
+  recency_decay_days: 730  # 2 years
+
+# Model configuration
+models:
+  # Sentence transformer model for embeddings
+  embedding_model: "all-MiniLM-L6-v2"
+
+# Citation fetching configuration
+citation:
+  enabled: true  # Enable/disable citation fetching
+  rate_limit_delay: 0.1  # Delay between API calls (seconds)
+  normalization_max_citations: 1000  # Max citations for normalization
+
+# Data collection configuration
+data_collection:
+  max_results: 100  # Default max results for searches
+  default_sort: "submitted_date"  # submitted_date, relevance, last_updated_date
+  default_sort_order: "descending"  # ascending or descending
+
+# Processing configuration
+processing:
+  process_metadata: true  # Process article metadata
+  process_text: true      # Process article text
+
