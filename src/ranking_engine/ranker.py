@@ -58,9 +58,17 @@ class ArticleRanker:
             
         weights = weights or self.config.get_ranking_weights()
         
+        # Compute query embedding once if query is provided
+        query_embedding = None
+        if query:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.debug(f"Computing query embedding for query: '{query}'")
+            query_embedding = self.embedding_model.predict({'title': query, 'abstract': ''})
+        
         scored_articles = []
         for article in articles:
-            score = self._calculate_score(article, query, weights)
+            score = self._calculate_score(article, query, weights, query_embedding)
             scored_articles.append((article, score))
             
         return sorted(scored_articles, key=lambda x: x[1], reverse=True)
@@ -69,7 +77,8 @@ class ArticleRanker:
         self,
         article: Dict,
         query: Optional[str],
-        weights: Dict[str, float]
+        weights: Dict[str, float],
+        query_embedding: Optional[np.ndarray] = None
     ) -> float:
         """
         Calculate the overall score for an article.
@@ -78,14 +87,15 @@ class ArticleRanker:
             article: Article to score
             query: Optional search query
             weights: Weights for different scoring factors
+            query_embedding: Pre-computed query embedding (if available)
             
         Returns:
             Overall score for the article
         """
         scores = {}
         
-        if query:
-            scores['relevance'] = self._calculate_relevance_score(article, query)
+        if query and query_embedding is not None:
+            scores['relevance'] = self._calculate_relevance_score(article, query_embedding)
         else:
             scores['relevance'] = 0.0
             
@@ -100,18 +110,17 @@ class ArticleRanker:
         
         return total_score
     
-    def _calculate_relevance_score(self, article: Dict, query: str) -> float:
+    def _calculate_relevance_score(self, article: Dict, query_embedding: np.ndarray) -> float:
         """
         Calculate relevance score based on query similarity.
         
         Args:
             article: Article to score
-            query: Search query
+            query_embedding: Pre-computed query embedding
             
         Returns:
             Relevance score between 0 and 1
         """
-        query_embedding = self.embedding_model.predict({'title': query, 'abstract': ''})
         article_embedding = self.embedding_model.predict(article)
         
         similarity = cosine_similarity(

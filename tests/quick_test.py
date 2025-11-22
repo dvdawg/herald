@@ -9,8 +9,8 @@ def main():
     pipeline = HeraldPipeline()
     
     # Quick search with small number of results
-    query = "machine learning"
-    max_results = 5
+    query = "quantum computing"
+    max_results = 100
     
     print(f"\nSearching for: '{query}' (max {max_results} results)")
     print("=" * 80)

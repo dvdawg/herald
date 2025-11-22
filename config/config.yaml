@@ -25,7 +25,7 @@ citation:
 # Data collection configuration
 data_collection:
   max_results: 100  # Default max results for searches
-  default_sort: "submitted_date"  # submitted_date, relevance, last_updated_date
+  default_sort: "relevance"  # submitted_date, relevance, last_updated_date
   default_sort_order: "descending"  # ascending or descending
 
 # Processing configuration

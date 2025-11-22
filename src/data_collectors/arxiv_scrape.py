@@ -15,7 +15,7 @@ class ArxivScraper:
         self,
         query: str,
         max_results: int = 100,
-        sort_by: arxiv.SortCriterion = arxiv.SortCriterion.SubmittedDate,
+        sort_by: arxiv.SortCriterion = arxiv.SortCriterion.Relevance,
         sort_order: arxiv.SortOrder = arxiv.SortOrder.Descending
     ) -> List[Dict]:
         """
@@ -102,10 +102,11 @@ class ArxivScraper:
 
 def main():
     """Example usage of the ArxivScraper."""
+    import sys
     scraper = ArxivScraper()
     
-    # Example: Search for recent machine learning papers
-    query = "machine learning"
+    # Get query from command line or use default
+    query = sys.argv[1] if len(sys.argv) > 1 else "quantum computing"
     articles = scraper.search_articles(
         query=query,
         max_results=10
