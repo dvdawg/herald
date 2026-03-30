@@ -13,6 +13,17 @@ from src.utils.config_loader import ConfigLoader
 logger = logging.getLogger(__name__)
 
 
+def _format_authors(authors: List) -> str:
+    """Format author list that may be strings or processed dicts."""
+    formatted = []
+    for author in authors or []:
+        if isinstance(author, dict):
+            formatted.append(author.get('full_name', str(author)))
+        else:
+            formatted.append(str(author))
+    return ', '.join(formatted)
+
+
 class HeraldPipeline:
     """
     Main pipeline that orchestrates article collection, processing, and ranking.
@@ -242,7 +253,7 @@ def main():
             for i, (article, score) in enumerate(top_results, 1):
                 print(f"{i}. {article.get('title', 'Unknown Title')}")
                 print(f"   Score: {score:.4f}")
-                print(f"   Authors: {', '.join(article.get('authors', []))}")
+                print(f"   Authors: {_format_authors(article.get('authors', []))}")
                 print(f"   Published: {article.get('published', 'Unknown')}")
                 if 'citation_count' in article:
                     print(f"   Citations: {article['citation_count']}")

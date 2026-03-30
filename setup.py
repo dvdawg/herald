@@ -13,6 +13,8 @@ setup(
         "numpy>=1.24.3",
         "requests>=2.31.0",
         "pyyaml>=6.0",
+        "fastapi>=0.110.0",
+        "uvicorn>=0.29.0",
     ],
     python_requires=">=3.8",
     entry_points={

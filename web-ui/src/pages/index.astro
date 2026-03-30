@@ -1,0 +1,26 @@
+---
+import ResultsPanel from "../components/ResultsPanel.astro";
+import SearchPanel from "../components/SearchPanel.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import runSearchScript from "../scripts/index.js?url";
+---
+
+<BaseLayout title="Herald Search UI">
+  <main class="page-shell">
+    <section class="hero">
+      <p class="hero-kicker">Herald</p>
+      <h1>Paper ranking without the test-page clutter.</h1>
+      <p>
+        Run a query, compare scored papers, and inspect the pipeline output in a cleaner bordered
+        workspace.
+      </p>
+    </section>
+
+    <div class="panel-grid">
+      <SearchPanel />
+      <ResultsPanel />
+    </div>
+  </main>
+
+  <script type="module" src={runSearchScript}></script>
+</BaseLayout>

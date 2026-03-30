@@ -4,12 +4,23 @@
 ranking:
   # Weights for different ranking factors (must sum to 1.0)
   weights:
-    relevance: 0.5  # Query relevance score
-    recency: 0.3    # Publication recency score
-    citations: 0.2  # Citation count score
+    relevance: 0.65  # Combined semantic + lexical query fit
+    recency: 0.2     # Publication recency score
+    citations: 0.1   # Citation count score
+    quality: 0.05    # Abstract completeness / matchability
+
+  # Internal breakdown for query relevance scoring
+  relevance_components:
+    semantic_similarity: 0.55
+    lexical_overlap: 0.2
+    title_overlap: 0.2
+    phrase_match: 0.05
   
-  # Recency decay: articles older than this many days get very low scores
-  recency_decay_days: 730  # 2 years
+  # Recency decay: newer work is rewarded more aggressively
+  recency_decay_days: 365
+
+  # Abstracts longer than this many words are treated as "fully informative"
+  abstract_length_saturation: 180
 
 # Model configuration
 models:
@@ -32,4 +43,3 @@ data_collection:
 processing:
   process_metadata: true  # Process article metadata
   process_text: true      # Process article text
-

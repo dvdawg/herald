@@ -1,0 +1,49 @@
+<section class="panel">
+  <div class="panel-inner">
+    <div class="panel-header">
+      <h2 class="panel-title">Run Query</h2>
+      <span class="panel-chip">Input</span>
+    </div>
+
+    <form id="run-form">
+      <div class="field">
+        <label for="query">Query</label>
+        <input class="input" id="query" name="query" value="quantum computing" required />
+      </div>
+
+      <div class="field">
+        <label for="max_results">Max Results</label>
+        <input
+          class="input"
+          id="max_results"
+          name="max_results"
+          type="number"
+          min="1"
+          max="200"
+          value="20"
+        />
+      </div>
+
+      <div class="field">
+        <label for="top_k">Top K</label>
+        <input class="input" id="top_k" name="top_k" type="number" min="1" max="200" value="10" />
+      </div>
+
+      <div class="field">
+        <label for="weights">Weights</label>
+        <textarea
+          class="textarea"
+          id="weights"
+          name="weights"
+          rows="4"
+          placeholder='{"relevance": 0.7, "recency": 0.2, "citations": 0.1}'
+        ></textarea>
+        <span class="field-hint">Optional JSON override for the ranking weights.</span>
+      </div>
+
+      <div class="actions">
+        <button id="run-btn" class="button" type="submit">Run Search</button>
+      </div>
+    </form>
+  </div>
+</section>

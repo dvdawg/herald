@@ -4,7 +4,7 @@ Tests for Herald pipeline.
 import unittest
 from unittest.mock import Mock, patch, MagicMock
 from datetime import datetime, timedelta
-from src.pipeline import HeraldPipeline
+from src.pipeline import HeraldPipeline, _format_authors
 
 
 class TestHeraldPipeline(unittest.TestCase):
@@ -147,6 +147,21 @@ class TestHeraldPipeline(unittest.TestCase):
             weights=None
         )
         self.assertEqual(len(results), 2)
+
+    def test_format_authors_handles_processed_dicts(self):
+        """Test author formatting handles metadata-processed dict authors."""
+        authors = [
+            {'full_name': 'Alice Smith', 'first_name': 'Alice'},
+            {'full_name': 'Bob Jones', 'first_name': 'Bob'}
+        ]
+        formatted = _format_authors(authors)
+        self.assertEqual(formatted, "Alice Smith, Bob Jones")
+
+    def test_format_authors_handles_string_authors(self):
+        """Test author formatting handles original string author lists."""
+        authors = ['Alice Smith', 'Bob Jones']
+        formatted = _format_authors(authors)
+        self.assertEqual(formatted, "Alice Smith, Bob Jones")
 
 
 if __name__ == '__main__':

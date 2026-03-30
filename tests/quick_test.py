@@ -10,7 +10,7 @@ def main():
     
     # Quick search with small number of results
     query = "quantum computing"
-    max_results = 100
+    max_results = 20
     
     print(f"\nSearching for: '{query}' (max {max_results} results)")
     print("=" * 80)
@@ -54,4 +54,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

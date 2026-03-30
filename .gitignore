@@ -45,4 +45,6 @@ Thumbs.db
 # Project specific
 temp/
 *.log
+web-ui/node_modules/
+web-ui/dist/
 

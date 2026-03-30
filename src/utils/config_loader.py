@@ -77,11 +77,19 @@ class ConfigLoader:
         return {
             'ranking': {
                 'weights': {
-                    'relevance': 0.5,
-                    'recency': 0.3,
-                    'citations': 0.2
+                    'relevance': 0.65,
+                    'recency': 0.2,
+                    'citations': 0.1,
+                    'quality': 0.05,
                 },
-                'recency_decay_days': 730  # 2 years
+                'relevance_components': {
+                    'semantic_similarity': 0.55,
+                    'lexical_overlap': 0.2,
+                    'title_overlap': 0.2,
+                    'phrase_match': 0.05,
+                },
+                'recency_decay_days': 365,
+                'abstract_length_saturation': 180,
             },
             'models': {
                 'embedding_model': 'all-MiniLM-L6-v2'
@@ -127,9 +135,10 @@ class ConfigLoader:
     def get_ranking_weights(self) -> Dict[str, float]:
         """Get ranking weights configuration."""
         return self.get('ranking.weights', {
-            'relevance': 0.5,
-            'recency': 0.3,
-            'citations': 0.2
+            'relevance': 0.65,
+            'recency': 0.2,
+            'citations': 0.1,
+            'quality': 0.05,
         })
     
     def get_embedding_model_name(self) -> str:
@@ -147,4 +156,3 @@ class ConfigLoader:
     def get_max_citations_for_normalization(self) -> int:
         """Get max citations for normalization."""
         return self.get('citation.normalization_max_citations', 1000)
-

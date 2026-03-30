@@ -1,1 +1,2 @@
+"""Herald package root."""
 
