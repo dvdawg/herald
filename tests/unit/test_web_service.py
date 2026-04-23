@@ -3,7 +3,16 @@ from src.web.service import HeraldWebService
 
 
 class _FakePipeline:
-    def search_and_rank(self, query, max_results=None, weights=None, process_metadata=None, process_text=None):
+    def search_and_rank(
+        self,
+        query,
+        max_results=None,
+        weights=None,
+        process_metadata=None,
+        process_text=None,
+        date_from=None,
+        date_to=None,
+    ):
         return [
             (
                 {

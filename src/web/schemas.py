@@ -13,6 +13,8 @@ class RunRequest(BaseModel):
     process_metadata: Optional[bool] = None
     process_text: Optional[bool] = None
     weights: Optional[Dict[str, float]] = None
+    date_from: Optional[str] = Field(default=None, description="Start of date range (YYYY-MM-DD or YYYY-MM)")
+    date_to: Optional[str] = Field(default=None, description="End of date range (YYYY-MM-DD or YYYY-MM)")
 
 
 class RankedArticle(BaseModel):
@@ -48,3 +50,50 @@ class RunResponse(BaseModel):
     query: str
     results: List[RankedArticle]
     debug: RunDebug
+
+
+class NewsRequest(BaseModel):
+    """Payload for running Herald news aggregation."""
+
+    query: Optional[str] = Field(default="", description="Optional topic or keyword filter")
+    sources: Optional[List[str]] = Field(default=None, description="Optional list of source ids")
+    limit: Optional[int] = Field(default=20, ge=1, le=100)
+    hours_back: Optional[int] = Field(default=72, ge=1, le=720)
+
+
+class NewsItem(BaseModel):
+    """API-safe representation of an aggregated news item."""
+
+    rank: int
+    score: float
+    title: str
+    summary: Optional[str]
+    url: Optional[str]
+    source: str
+    source_label: str
+    author: Optional[str]
+    published: Optional[str]
+    tags: List[str]
+    score_points: Optional[int]
+    comment_count: Optional[int]
+    raw_item: Dict[str, Any]
+
+
+class NewsDebug(BaseModel):
+    """Debug metadata returned with each news request."""
+
+    total_candidates: int
+    returned_results: int
+    total_ms: int
+    source_counts: Dict[str, int]
+    unavailable_sources: List[str]
+    params: Dict[str, Any]
+
+
+class NewsResponse(BaseModel):
+    """Successful API response for /api/news."""
+
+    status: str = "ok"
+    query: str
+    results: List[NewsItem]
+    debug: NewsDebug

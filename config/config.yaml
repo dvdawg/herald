@@ -39,6 +39,33 @@ data_collection:
   default_sort: "relevance"  # submitted_date, relevance, last_updated_date
   default_sort_order: "descending"  # ascending or descending
 
+# News aggregation configuration
+news:
+  default_sources:
+    - "hackernews"
+    - "lobsters"
+    - "reddit-programming"
+    - "reddit-technology"
+    - "techcrunch"
+    - "openai-news"
+    - "anthropic-news"
+    - "google-blog"
+    - "google-developers"
+    - "google-research"
+    - "google-deepmind"
+    - "nvidia-blog"
+    - "nvidia-news"
+    - "nvidia-generative-ai"
+    - "nvidia-developer"
+    - "huggingface-blog"
+    - "microsoft-ai"
+    - "x"
+  max_items_per_source: 30
+  request_timeout_seconds: 8.0
+  # Optional X support can be provided through one of these env vars:
+  # HERALD_X_RSS_SEARCH_URL="https://your-rss-bridge.example/search?query={query}"
+  # HERALD_X_RSS_LATEST_URL="https://your-rss-bridge.example/latest"
+
 # Processing configuration
 processing:
   process_metadata: true  # Process article metadata

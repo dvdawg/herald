@@ -53,6 +53,8 @@ class HeraldWebService:
             weights=payload.weights,
             process_metadata=payload.process_metadata,
             process_text=payload.process_text,
+            date_from=payload.date_from,
+            date_to=payload.date_to,
         )
 
         top_k = payload.top_k or len(ranked)
@@ -74,6 +76,8 @@ class HeraldWebService:
                 "process_metadata": payload.process_metadata,
                 "process_text": payload.process_text,
                 "weights": payload.weights,
+                "date_from": payload.date_from,
+                "date_to": payload.date_to,
             },
         )
         return RunResponse(query=payload.query, results=normalized, debug=debug)

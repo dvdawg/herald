@@ -1,0 +1,122 @@
+<section class="panel news-toolbar">
+  <div class="panel-inner">
+    <form id="news-form" class="news-toolbar__form">
+      <div class="news-toolbar__heading">
+        <div>
+          <p class="news-toolbar__eyebrow">Your Briefing</p>
+          <h2>Shape the feed</h2>
+        </div>
+        <button id="news-run-btn" class="button news-toolbar__button" type="submit">
+          Refresh Feed
+        </button>
+      </div>
+
+      <div class="news-toolbar__filters">
+        <label class="news-toolbar__search">
+          <span>Topic</span>
+          <input
+            class="input"
+            id="news-query"
+            name="query"
+            placeholder="Optional topic"
+          />
+        </label>
+
+        <div class="news-toolbar__meta">
+          <label>
+            <span>Stories</span>
+            <input class="input" id="limit" name="limit" type="number" min="1" max="100" value="20" />
+          </label>
+          <label>
+            <span>Window</span>
+            <input
+              class="input"
+              id="hours_back"
+              name="hours_back"
+              type="number"
+              min="1"
+              max="720"
+              value="72"
+            />
+          </label>
+        </div>
+      </div>
+
+      <fieldset class="news-source-pills">
+        <legend>Sources</legend>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="hackernews" checked />
+          <span>Hacker News</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="lobsters" checked />
+          <span>Lobsters</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="reddit-programming" checked />
+          <span>/r/programming</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="reddit-technology" checked />
+          <span>/r/technology</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="techcrunch" checked />
+          <span>TechCrunch</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="openai-news" checked />
+          <span>OpenAI News</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="anthropic-news" checked />
+          <span>Anthropic News</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="google-blog" checked />
+          <span>Google Blog</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="google-developers" checked />
+          <span>Google Developers</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="google-research" checked />
+          <span>Google Research</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="google-deepmind" checked />
+          <span>DeepMind</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="nvidia-blog" checked />
+          <span>NVIDIA Blog</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="nvidia-news" checked />
+          <span>NVIDIA News</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="nvidia-generative-ai" checked />
+          <span>NVIDIA GenAI</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="nvidia-developer" checked />
+          <span>NVIDIA Dev</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="huggingface-blog" checked />
+          <span>Hugging Face</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="microsoft-ai" checked />
+          <span>Microsoft AI</span>
+        </label>
+        <label class="news-source-pill">
+          <input type="checkbox" name="sources" value="x" checked />
+          <span>X</span>
+        </label>
+      </fieldset>
+    </form>
+  </div>
+</section>

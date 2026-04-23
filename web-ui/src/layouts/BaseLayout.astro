@@ -1,9 +1,12 @@
 ---
+import SiteHeader from "../components/SiteHeader.astro";
+
 export interface Props {
   title?: string;
+  activePage?: "papers" | "news";
 }
 
-const { title = "Herald" } = Astro.props;
+const { title = "Herald", activePage = "papers" } = Astro.props;
 ---
 
 <html lang="en">
@@ -13,6 +16,7 @@ const { title = "Herald" } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <SiteHeader activePage={activePage} />
     <slot />
   </body>
 </html>
@@ -155,6 +159,20 @@ const { title = "Herald" } = Astro.props;
     margin-bottom: 18px;
   }
 
+  .field--row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .field--row .field {
+    margin-bottom: 0;
+  }
+
+  .field--row .field-hint {
+    grid-column: 1 / -1;
+  }
+
   .field label {
     display: block;
     margin-bottom: 6px;
@@ -192,6 +210,34 @@ const { title = "Herald" } = Astro.props;
     justify-content: flex-start;
   }
 
+  .source-fieldset {
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 14px 10px;
+    background: #fff;
+  }
+
+  .source-fieldset legend {
+    padding: 0 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .checkbox-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+
+  .checkbox-row input {
+    width: 16px;
+    height: 16px;
+  }
+
   .button {
     border: 2px solid var(--line);
     border-radius: 12px;
@@ -213,6 +259,12 @@ const { title = "Herald" } = Astro.props;
     font-size: 0.92rem;
     font-weight: 700;
     color: var(--accent);
+  }
+
+  .status-meta {
+    margin: -8px 0 14px;
+    color: var(--muted);
+    font-size: 0.88rem;
   }
 
   .results-list {
@@ -312,6 +364,24 @@ const { title = "Herald" } = Astro.props;
     border-bottom: 2px solid var(--line);
   }
 
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 8px;
+    background: rgba(180, 76, 47, 0.08);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
   .empty-state {
     border: 2px dashed var(--line-soft);
     border-radius: 14px;
@@ -358,6 +428,10 @@ const { title = "Herald" } = Astro.props;
     .hero,
     .panel-inner {
       padding: 16px;
+    }
+
+    .field--row {
+      grid-template-columns: 1fr;
     }
 
     .result-item__row {

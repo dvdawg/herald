@@ -104,6 +104,30 @@ class ConfigLoader:
                 'default_sort': 'submitted_date',
                 'default_sort_order': 'descending'
             },
+            'news': {
+                'default_sources': [
+                    'hackernews',
+                    'lobsters',
+                    'reddit-programming',
+                    'reddit-technology',
+                    'techcrunch',
+                    'openai-news',
+                    'anthropic-news',
+                    'google-blog',
+                    'google-developers',
+                    'google-research',
+                    'google-deepmind',
+                    'nvidia-blog',
+                    'nvidia-news',
+                    'nvidia-generative-ai',
+                    'nvidia-developer',
+                    'huggingface-blog',
+                    'microsoft-ai',
+                    'x',
+                ],
+                'max_items_per_source': 30,
+                'request_timeout_seconds': 8.0,
+            },
             'processing': {
                 'process_metadata': True,
                 'process_text': True

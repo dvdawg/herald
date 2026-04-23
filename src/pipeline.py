@@ -1,6 +1,7 @@
 """
 Main pipeline for Herald article search and ranking system.
 """
+import datetime
 import logging
 from typing import List, Dict, Optional, Tuple
 
@@ -51,7 +52,9 @@ class HeraldPipeline:
         max_results: Optional[int] = None,
         weights: Optional[Dict[str, float]] = None,
         process_metadata: Optional[bool] = None,
-        process_text: Optional[bool] = None
+        process_text: Optional[bool] = None,
+        date_from: Optional[str] = None,
+        date_to: Optional[str] = None,
     ) -> List[Tuple[Dict, float]]:
         """
         Search for articles and rank them based on query and various criteria.
@@ -74,10 +77,30 @@ class HeraldPipeline:
         process_text = process_text if process_text is not None else \
             self.config.get('processing.process_text', True)
         
+        def _parse_date(s: Optional[str]) -> Optional[datetime.datetime]:
+            if not s:
+                return None
+            for fmt in ("%Y-%m-%d", "%Y-%m"):
+                try:
+                    return datetime.datetime.strptime(s, fmt)
+                except ValueError:
+                    continue
+            raise ValueError(f"Unrecognised date format: {s!r}. Use YYYY-MM-DD or YYYY-MM.")
+
+        dt_from = _parse_date(date_from)
+        dt_to = _parse_date(date_to)
+        # When only a month is given for date_to, advance to end of that month
+        if date_to and len(date_to) == 7:
+            import calendar
+            last_day = calendar.monthrange(dt_to.year, dt_to.month)[1]
+            dt_to = dt_to.replace(day=last_day, hour=23, minute=59, second=59)
+
         logger.info(f"Fetching up to {max_results} articles from arXiv...")
         articles = self.scraper.search_articles(
             query=query,
-            max_results=max_results
+            max_results=max_results,
+            date_from=dt_from,
+            date_to=dt_to,
         )
         
         if not articles:

@@ -1,0 +1,79 @@
+---
+export interface Props {
+  activePage?: "papers" | "news";
+  brandLabel?: string;
+}
+
+const { activePage = "papers", brandLabel = "Herald" } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-brand" href="/">{brandLabel}</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a class:list={["site-nav__link", activePage === "papers" && "is-active"]} href="/">
+        Paper Search
+      </a>
+      <a class:list={["site-nav__link", activePage === "news" && "is-active"]} href="/news">
+        News Radar
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(16px);
+    background: rgba(251, 247, 239, 0.88);
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .site-header__inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .site-brand {
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .site-nav__link {
+    text-decoration: none;
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 12px;
+    background: var(--panel);
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+
+  .site-nav__link.is-active {
+    background: var(--ink);
+    color: #fffdf8;
+  }
+
+  @media (max-width: 620px) {
+    .site-header__inner {
+      padding-inline: 14px;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

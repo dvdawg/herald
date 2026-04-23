@@ -16,7 +16,9 @@ class ArxivScraper:
         query: str,
         max_results: int = 100,
         sort_by: arxiv.SortCriterion = arxiv.SortCriterion.Relevance,
-        sort_order: arxiv.SortOrder = arxiv.SortOrder.Descending
+        sort_order: arxiv.SortOrder = arxiv.SortOrder.Descending,
+        date_from: Optional[datetime.datetime] = None,
+        date_to: Optional[datetime.datetime] = None,
     ) -> List[Dict]:
         """
         Search for articles on arXiv based on given criteria.
@@ -26,14 +28,24 @@ class ArxivScraper:
             max_results (int): Maximum number of results to return
             sort_by (arxiv.SortCriterion): Criterion to sort results by
             sort_order (arxiv.SortOrder): Order to sort results in
+            date_from (datetime): Only include articles published on or after this date
+            date_to (datetime): Only include articles published on or before this date
 
         Returns:
             List[Dict]: List of article metadata dictionaries
         """
         try:
+            # Append date range filter to query using arXiv Lucene syntax
+            full_query = query
+            if date_from or date_to:
+                lo = date_from.strftime("%Y%m%d%H%M%S") if date_from else "000000000000000"
+                hi = date_to.strftime("%Y%m%d%H%M%S") if date_to else "99991231235959"
+                date_filter = f"submittedDate:[{lo} TO {hi}]"
+                full_query = f"({query}) AND {date_filter}"
+
             # Construct the search query
             search = arxiv.Search(
-                query=query,
+                query=full_query,
                 max_results=max_results,
                 sort_by=sort_by,
                 sort_order=sort_order

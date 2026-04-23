@@ -29,6 +29,18 @@
         <input class="input" id="top_k" name="top_k" type="number" min="1" max="200" value="10" />
       </div>
 
+      <div class="field field--row">
+        <div class="field">
+          <label for="date_from">From</label>
+          <input class="input" id="date_from" name="date_from" type="month" placeholder="YYYY-MM" />
+        </div>
+        <div class="field">
+          <label for="date_to">To</label>
+          <input class="input" id="date_to" name="date_to" type="month" placeholder="YYYY-MM" />
+        </div>
+        <span class="field-hint">Optional date range filter.</span>
+      </div>
+
       <div class="field">
         <label for="weights">Weights</label>
         <textarea

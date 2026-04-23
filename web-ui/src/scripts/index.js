@@ -75,6 +75,8 @@ if (form && button && errorBox && resultsBox && debugBox && resultCount) {
       const maxResults = Number(formData.get("max_results") || 20);
       const topK = Number(formData.get("top_k") || 10);
       const weightsRaw = String(formData.get("weights") || "").trim();
+      const dateFrom = String(formData.get("date_from") || "").trim() || undefined;
+      const dateTo = String(formData.get("date_to") || "").trim() || undefined;
 
       let weights;
       if (weightsRaw.length > 0) {
@@ -85,7 +87,9 @@ if (form && button && errorBox && resultsBox && debugBox && resultCount) {
         query,
         max_results: maxResults,
         top_k: topK,
-        weights
+        weights,
+        date_from: dateFrom,
+        date_to: dateTo,
       };
 
       const response = await fetch(`${apiBase}/run`, {
