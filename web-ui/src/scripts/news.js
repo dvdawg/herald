@@ -7,25 +7,46 @@ const truncate = (value, maxLength) => {
 };
 
 const sourceHue = {
-  hackernews: "source-art--amber",
-  lobsters: "source-art--rose",
-  "reddit-programming": "source-art--orange",
-  "reddit-technology": "source-art--violet",
-  techcrunch: "source-art--mint",
-  "openai-news": "source-art--sky",
-  "anthropic-news": "source-art--rose",
-  "google-blog": "source-art--mint",
-  "google-developers": "source-art--amber",
-  "google-research": "source-art--sky",
-  "google-deepmind": "source-art--violet",
-  "nvidia-blog": "source-art--mint",
-  "nvidia-news": "source-art--amber",
-  "nvidia-generative-ai": "source-art--orange",
-  "nvidia-developer": "source-art--sky",
-  "huggingface-blog": "source-art--rose",
-  "microsoft-ai": "source-art--violet",
-  x: "source-art--sky"
+  hackernews: "bg-[linear-gradient(135deg,#ffb34d,#f2682f_72%)]",
+  lobsters: "bg-[linear-gradient(135deg,#ff8fb1,#e0597d_72%)]",
+  "reddit-programming": "bg-[linear-gradient(135deg,#ff9866,#ee5b32_72%)]",
+  "reddit-technology": "bg-[linear-gradient(135deg,#9b94ff,#665bdb_72%)]",
+  techcrunch: "bg-[linear-gradient(135deg,#44d1a5,#0b8e75_72%)]",
+  "openai-news": "bg-[linear-gradient(135deg,#68c8ff,#1976e8_72%)]",
+  "anthropic-news": "bg-[linear-gradient(135deg,#ff8fb1,#e0597d_72%)]",
+  "google-blog": "bg-[linear-gradient(135deg,#44d1a5,#0b8e75_72%)]",
+  "google-developers": "bg-[linear-gradient(135deg,#ffb34d,#f2682f_72%)]",
+  "google-research": "bg-[linear-gradient(135deg,#68c8ff,#1976e8_72%)]",
+  "google-deepmind": "bg-[linear-gradient(135deg,#9b94ff,#665bdb_72%)]",
+  "nvidia-blog": "bg-[linear-gradient(135deg,#44d1a5,#0b8e75_72%)]",
+  "nvidia-news": "bg-[linear-gradient(135deg,#ffb34d,#f2682f_72%)]",
+  "nvidia-generative-ai": "bg-[linear-gradient(135deg,#ff9866,#ee5b32_72%)]",
+  "nvidia-developer": "bg-[linear-gradient(135deg,#68c8ff,#1976e8_72%)]",
+  "huggingface-blog": "bg-[linear-gradient(135deg,#ff8fb1,#e0597d_72%)]",
+  "microsoft-ai": "bg-[linear-gradient(135deg,#9b94ff,#665bdb_72%)]",
+  x: "bg-[linear-gradient(135deg,#68c8ff,#1976e8_72%)]"
 };
+
+const defaultHue = "bg-[linear-gradient(135deg,#7692ff,#3e5daa_72%)]";
+const panelClass =
+  "rounded-[28px] border border-[rgba(17,56,102,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(249,251,255,0.97))] shadow-[0_24px_60px_rgba(77,102,152,0.08)]";
+const panelInnerClass = "p-6 sm:px-7 sm:py-[26px]";
+const panelHeaderClass = "flex items-center justify-between gap-3 text-[#0b6899]";
+const dividerClass = "my-[22px] mb-[26px] h-px bg-[rgba(64,94,128,0.16)]";
+const emptyStateClass =
+  "rounded-[14px] border-2 border-dashed border-line-soft bg-[rgba(255,255,255,0.55)] p-[18px] text-muted";
+const storySourceClass =
+  "inline-flex items-center gap-2.5 text-[0.98rem] font-bold text-[#334a67]";
+const sourceArtClass =
+  "inline-flex h-[30px] w-[30px] items-center justify-center rounded-lg text-[0.76rem] font-extrabold tracking-[0.05em] text-[rgba(255,255,255,0.95)]";
+const leadArtClass =
+  "flex min-h-[290px] items-end rounded-[24px] bg-[linear-gradient(145deg,rgba(255,255,255,0.1),transparent_35%),linear-gradient(180deg,rgba(13,28,56,0.06),rgba(13,28,56,0.34))] p-5 text-[1.6rem] leading-none font-semibold tracking-[-0.04em] text-[rgba(255,255,255,0.92)]";
+const tagRowClass = "mt-3 flex flex-wrap gap-2";
+const tagChipClass =
+  "inline-flex items-center rounded-full border border-line bg-[rgba(180,76,47,0.08)] px-2 py-1 text-[0.78rem] font-bold";
+const livePillClass =
+  "inline-flex min-h-11 items-center rounded-2xl border border-[rgba(93,112,141,0.24)] bg-white px-[18px] font-semibold text-[#41556f]";
+const livePillActiveClass = "border-[#d8ecff] bg-[#d8ecff] text-[#14679c]";
 
 const escapeHtml = (value) =>
   value
@@ -72,8 +93,8 @@ const renderSourceLockup = (item) => {
     .toUpperCase();
 
   return `
-    <div class="story-source">
-      <span class="source-art ${sourceHue[sourceKey] || "source-art--default"}">${escapeHtml(initials)}</span>
+    <div class="${storySourceClass}">
+      <span class="${sourceArtClass} ${sourceHue[sourceKey] || defaultHue}">${escapeHtml(initials)}</span>
       <span>${escapeHtml(sourceLabel)}</span>
     </div>
   `;
@@ -86,22 +107,22 @@ const renderLeadStory = (item) => {
   const tags = Array.isArray(item.tags) ? item.tags.slice(0, 3) : [];
 
   return `
-    <article class="lead-story">
-      <a class="lead-story__headline" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
+    <article class="grid gap-5">
+      <a class="text-[clamp(2rem,3vw,3rem)] leading-[1.04] font-medium tracking-[-0.05em] text-[#113a63] no-underline" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
         ${escapeHtml(title)}
       </a>
-      <div class="lead-story__grid">
-        <div class="lead-story__art ${sourceHue[String(item.source || "")] || "source-art--default"}">
+      <div class="grid items-start gap-5 xl:grid-cols-[minmax(260px,0.95fr)_minmax(0,1.15fr)]">
+        <div class="${leadArtClass} ${sourceHue[String(item.source || "")] || defaultHue}">
           <span>${escapeHtml(String(item.source_label || item.source || "Story"))}</span>
         </div>
-        <div class="lead-story__body">
+        <div class="grid gap-4">
           ${renderSourceLockup(item)}
-          <p class="lead-story__summary">${escapeHtml(summary)}</p>
-          <p class="lead-story__meta">${escapeHtml(renderByline(item))}</p>
+          <p class="m-0 text-[1.1rem] leading-[1.55] text-[#33445d]">${escapeHtml(summary)}</p>
+          <p class="m-0 text-[0.97rem] leading-[1.5] text-[#637089]">${escapeHtml(renderByline(item))}</p>
           ${
             tags.length
-              ? `<div class="tag-row">${tags
-                  .map((tag) => `<span class="tag-chip">${escapeHtml(String(tag))}</span>`)
+              ? `<div class="${tagRowClass}">${tags
+                  .map((tag) => `<span class="${tagChipClass}">${escapeHtml(String(tag))}</span>`)
                   .join("")}</div>`
               : ""
           }
@@ -116,31 +137,32 @@ const renderHeadlineRow = (item) => {
   const url = item.url ? String(item.url) : "";
 
   return `
-    <article class="headline-row">
+    <article class="grid gap-2.5 border-t border-[rgba(78,104,135,0.16)] pt-2.5">
       ${renderSourceLockup(item)}
-      <a class="headline-row__link" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
+      <a class="text-base leading-[1.35] text-[#2b3344] no-underline" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
         ${escapeHtml(title)}
       </a>
-      <p class="headline-row__meta">${escapeHtml(renderByline(item))}</p>
+      <p class="m-0 text-[0.97rem] leading-[1.5] text-[#637089]">${escapeHtml(renderByline(item))}</p>
     </article>
   `;
 };
 
-const renderRailStory = (item) => {
+const renderRailStory = (item, index) => {
   const title = truncate(String(item.title || "Untitled"), 108);
   const url = item.url ? String(item.url) : "";
   const sourceKey = String(item.source || "");
+  const topBorder = index === 0 ? "border-t-0 pt-0" : "border-t border-[rgba(78,104,135,0.16)] pt-[18px]";
 
   return `
-    <article class="rail-story">
-      <div class="rail-story__body">
+    <article class="grid items-start gap-4 pb-[18px] ${topBorder} sm:grid-cols-[minmax(0,1fr)_102px]">
+      <div class="grid gap-3">
         ${renderSourceLockup(item)}
-        <a class="rail-story__link" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
+        <a class="text-[1.03rem] leading-[1.35] text-[#2b3344] no-underline" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
           ${escapeHtml(title)}
         </a>
-        <p class="rail-story__meta">${escapeHtml(renderByline(item))}</p>
+        <p class="m-0 text-[0.97rem] leading-[1.5] text-[#637089]">${escapeHtml(renderByline(item))}</p>
       </div>
-      <div class="rail-story__art ${sourceHue[sourceKey] || "source-art--default"}"></div>
+      <div class="min-h-[102px] rounded-[20px] ${sourceHue[sourceKey] || defaultHue}"></div>
     </article>
   `;
 };
@@ -151,15 +173,15 @@ const renderMoreStory = (item) => {
   const url = item.url ? String(item.url) : "";
 
   return `
-    <article class="more-story">
+    <article class="grid items-center gap-4 border-t border-[rgba(78,104,135,0.16)] py-5 sm:grid-cols-[minmax(0,1fr)_auto]">
       <div>
-        <p class="more-story__source">${escapeHtml(sourceLabel)}</p>
-        <a class="more-story__link" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
+        <p class="mb-2 text-[0.9rem] font-bold text-[#4a5871]">${escapeHtml(sourceLabel)}</p>
+        <a class="text-[1.03rem] leading-[1.35] text-[#2b3344] no-underline" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
           ${escapeHtml(title)}
         </a>
-        <p class="more-story__meta">${escapeHtml(renderByline(item))}</p>
+        <p class="m-0 mt-2 text-[0.97rem] leading-[1.5] text-[#637089]">${escapeHtml(renderByline(item))}</p>
       </div>
-      <div class="more-story__score">#${escapeHtml(String(item.rank || ""))}</div>
+      <div class="text-[2rem] font-semibold tracking-[-0.06em] text-[#9bb2cf]">#${escapeHtml(String(item.rank || ""))}</div>
     </article>
   `;
 };
@@ -167,14 +189,14 @@ const renderMoreStory = (item) => {
 const renderNewsLayout = (results) => {
   if (!results.length) {
     return `
-      <section class="panel news-cluster news-cluster--primary">
-        <div class="panel-inner">
-          <div class="news-cluster__header">
-            <h2>Top stories</h2>
-            <span class="news-cluster__arrow">›</span>
+      <section class="${panelClass}">
+        <div class="${panelInnerClass}">
+          <div class="${panelHeaderClass}">
+            <h2 class="m-0 text-[clamp(1.7rem,2vw,2.25rem)] font-medium tracking-[-0.04em]">Top stories</h2>
+            <span class="text-[2rem] leading-none">›</span>
           </div>
-          <div class="news-cluster__divider"></div>
-          <div class="empty-state">No stories matched this topic and time window. Try broadening the query or expanding the recency window.</div>
+          <div class="${dividerClass}"></div>
+          <div class="${emptyStateClass}">No stories matched this topic and time window. Try broadening the query or expanding the recency window.</div>
         </div>
       </section>
     `;
@@ -186,22 +208,22 @@ const renderNewsLayout = (results) => {
   const moreRows = rest.slice(8);
 
   return `
-    <section class="panel news-cluster news-cluster--primary">
-      <div class="panel-inner">
-        <div class="news-cluster__header">
-          <h2>Top stories</h2>
-          <span class="news-cluster__arrow">›</span>
+    <section class="${panelClass}">
+      <div class="${panelInnerClass}">
+        <div class="${panelHeaderClass}">
+          <h2 class="m-0 text-[clamp(1.7rem,2vw,2.25rem)] font-medium tracking-[-0.04em]">Top stories</h2>
+          <span class="text-[2rem] leading-none">›</span>
         </div>
-        <div class="news-cluster__divider"></div>
+        <div class="${dividerClass}"></div>
         ${renderLeadStory(lead)}
-        <div class="headline-stack">
+        <div class="mt-6 grid gap-[18px] xl:grid-cols-3">
           ${primaryRows.map((item) => renderHeadlineRow(item)).join("")}
         </div>
         ${
           moreRows.length
             ? `
-              <div class="news-cluster__cta">See more headlines & perspectives</div>
-              <div class="more-grid">
+              <div class="mt-7 rounded-full bg-[#eff2f7] px-6 py-[18px] text-center text-base font-bold text-[#45505f]">See more headlines & perspectives</div>
+              <div class="mt-6 grid gap-0">
                 ${moreRows.map((item) => renderMoreStory(item)).join("")}
               </div>
             `
@@ -209,19 +231,23 @@ const renderNewsLayout = (results) => {
         }
       </div>
     </section>
-    <aside class="panel news-cluster news-cluster--rail">
-      <div class="panel-inner">
-        <div class="news-cluster__header">
-          <h2>Live updates</h2>
-          <span class="news-cluster__arrow">›</span>
+    <aside class="${panelClass}">
+      <div class="${panelInnerClass}">
+        <div class="${panelHeaderClass}">
+          <h2 class="m-0 text-[clamp(1.45rem,1.7vw,1.9rem)] font-medium tracking-[-0.04em]">Live updates</h2>
+          <span class="text-[2rem] leading-none">›</span>
         </div>
-        <div class="news-cluster__pill-row">
-          <span class="news-cluster__pill news-cluster__pill--active">For you</span>
-          <span class="news-cluster__pill">Developers</span>
+        <div class="mb-[18px] flex flex-wrap gap-2.5">
+          <span class="${livePillClass} ${livePillActiveClass}">For you</span>
+          <span class="${livePillClass}">Developers</span>
         </div>
-        <div class="news-cluster__divider"></div>
-        <div class="rail-stack">
-          ${railRows.length ? railRows.map((item) => renderRailStory(item)).join("") : '<div class="empty-state">Not enough stories yet to fill the side rail.</div>'}
+        <div class="${dividerClass}"></div>
+        <div class="grid gap-0">
+          ${
+            railRows.length
+              ? railRows.map((item, index) => renderRailStory(item, index)).join("")
+              : `<div class="${emptyStateClass}">Not enough stories yet to fill the side rail.</div>`
+          }
         </div>
       </div>
     </aside>
@@ -298,9 +324,9 @@ if (form && button && errorBox && sourceStatus && resultsBox && debugBox && resu
           : message;
       resultCount.textContent = "Refresh Failed";
       resultsBox.innerHTML = `
-        <section class="panel news-cluster news-cluster--primary">
-          <div class="panel-inner">
-            <div class="empty-state">The feed request did not complete. Check the error above and try again.</div>
+        <section class="${panelClass}">
+          <div class="${panelInnerClass}">
+            <div class="${emptyStateClass}">The feed request did not complete. Check the error above and try again.</div>
           </div>
         </section>
       `;

@@ -3,19 +3,13 @@ import ResultsPanel from "../components/ResultsPanel.astro";
 import SearchPanel from "../components/SearchPanel.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import runSearchScript from "../scripts/index.js?url";
+import HeaderPanel from "../components/HeaderPanel.astro";
 ---
 
-<BaseLayout title="Herald Search UI" activePage="papers">
-  <main class="page-shell">
-    <section class="hero">
-      <p class="hero-kicker">Herald</p>
-      <h1>Paper Ranking</h1>
-      <p>
-        Scored ranking of papers based on a query.
-      </p>
-    </section>
-
-    <div class="panel-grid">
+<BaseLayout title="Herald Search UI">
+  <main class="mx-auto max-w-[1180px] px-3.5 py-8 pb-12 sm:px-5">
+    <HeaderPanel />
+    <div class="grid items-start gap-[18px] lg:grid-cols-[minmax(280px,340px)_minmax(0,1fr)]">
       <SearchPanel />
       <ResultsPanel />
     </div>

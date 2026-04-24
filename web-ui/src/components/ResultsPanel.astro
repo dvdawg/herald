@@ -1,19 +1,29 @@
-<section class="panel">
-  <div class="panel-inner">
-    <div class="panel-header">
-      <h2 class="panel-title">Ranked Results</h2>
-      <span class="panel-chip" id="result-count">Awaiting Run</span>
+---
+---
+
+<section class="rounded-none border-2 border-line bg-paper-panel shadow-paper-panel">
+  <div class="p-4 sm:p-[18px]">
+    <div class="mb-4 flex items-baseline justify-between gap-3">
+      <h2 class="m-0 text-base font-bold uppercase tracking-[0.08em]">Ranked Results</h2>
+      <span
+        class="rounded-none border-[1.5px] border-line bg-paper-panel-muted px-2.5 py-1 text-xs font-bold uppercase tracking-[0.06em]"
+        id="result-count">Awaiting Run</span
+      >
     </div>
 
-    <div id="error" class="status-message" aria-live="polite"></div>
+    <div id="error" class="mb-[14px] min-h-5 text-[0.92rem] font-bold text-accent" aria-live="polite"></div>
 
-    <ol id="results" class="results-list">
-      <li class="empty-state">Submit a query to inspect scored papers and debug output.</li>
+    <ol id="results" class="m-0 flex list-none flex-col gap-3 p-0">
+      <li class="rounded-none border-2 border-dashed border-line-soft bg-[#f3ede2] p-[18px] text-muted">
+        Submit a query to inspect scored papers and debug output.
+      </li>
     </ol>
 
-    <section class="debug-block">
-      <h3>Debug Payload</h3>
-      <pre id="debug-json">{}</pre>
+    <section class="mt-4 border-t-2 border-line pt-4">
+      <h3 class="mb-2.5 text-[0.95rem] font-bold uppercase tracking-[0.08em]">Debug Payload</h3>
+      <pre
+        id="debug-json"
+        class="m-0 overflow-x-auto whitespace-pre-wrap break-words rounded-none border-[1.5px] border-line bg-[#fffdf8] p-3">{}</pre>
     </section>
   </div>
 </section>

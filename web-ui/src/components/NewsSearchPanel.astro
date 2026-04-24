@@ -1,36 +1,51 @@
-<section class="panel news-toolbar">
-  <div class="panel-inner">
-    <form id="news-form" class="news-toolbar__form">
-      <div class="news-toolbar__heading">
+---
+---
+
+<section class="rounded-[18px] border border-[rgba(19,76,136,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(246,250,255,0.95))] shadow-[0_10px_24px_rgba(57,92,154,0.06)]">
+  <div class="p-2.5 sm:px-3 sm:py-2.5">
+    <form id="news-form" class="grid gap-2">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-2.5">
         <div>
-          <p class="news-toolbar__eyebrow">Your Briefing</p>
-          <h2>Shape the feed</h2>
+          <p class="mb-0.5 text-[0.52rem] font-bold uppercase tracking-[0.08em] text-[#6d7e98]">
+            Your Briefing
+          </p>
+          <h2 class="m-0 text-[0.95rem] leading-[1.1] font-semibold text-[#154272]">Shape the feed</h2>
         </div>
-        <button id="news-run-btn" class="button news-toolbar__button" type="submit">
-          Refresh Feed
-        </button>
+        <button
+          id="news-run-btn"
+          class="cursor-pointer rounded-lg border border-transparent bg-[#1a73e8] px-[9px] py-1.5 text-[0.72rem] font-bold text-white shadow-[0_5px_12px_rgba(26,115,232,0.18)] disabled:cursor-wait disabled:opacity-70"
+          type="submit">Refresh Feed</button
+        >
       </div>
 
-      <div class="news-toolbar__filters">
-        <label class="news-toolbar__search">
-          <span>Topic</span>
+      <div class="grid gap-2 lg:grid-cols-[minmax(0,1.65fr)_minmax(280px,0.9fr)]">
+        <label class="grid gap-[3px]">
+          <span class="text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">Topic</span>
           <input
-            class="input"
+            class="min-h-7 w-full rounded-lg border border-[rgba(84,112,153,0.22)] bg-[rgba(255,255,255,0.95)] px-2 py-[5px] text-[0.72rem] text-ink"
             id="news-query"
             name="query"
             placeholder="Optional topic"
           />
         </label>
 
-        <div class="news-toolbar__meta">
-          <label>
-            <span>Stories</span>
-            <input class="input" id="limit" name="limit" type="number" min="1" max="100" value="20" />
-          </label>
-          <label>
-            <span>Window</span>
+        <div class="grid gap-1.5 sm:grid-cols-2">
+          <label class="grid gap-[3px]">
+            <span class="text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">Stories</span>
             <input
-              class="input"
+              class="min-h-7 w-full rounded-lg border border-[rgba(84,112,153,0.22)] bg-[rgba(255,255,255,0.95)] px-2 py-[5px] text-[0.72rem] text-ink"
+              id="limit"
+              name="limit"
+              type="number"
+              min="1"
+              max="100"
+              value="20"
+            />
+          </label>
+          <label class="grid gap-[3px]">
+            <span class="text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">Window</span>
+            <input
+              class="min-h-7 w-full rounded-lg border border-[rgba(84,112,153,0.22)] bg-[rgba(255,255,255,0.95)] px-2 py-[5px] text-[0.72rem] text-ink"
               id="hours_back"
               name="hours_back"
               type="number"
@@ -42,79 +57,81 @@
         </div>
       </div>
 
-      <fieldset class="news-source-pills">
-        <legend>Sources</legend>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="hackernews" checked />
-          <span>Hacker News</span>
+      <fieldset class="m-0 flex flex-wrap gap-[5px] border-0 p-0">
+        <legend class="mb-0 w-full p-0 text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">
+          Sources
+        </legend>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="hackernews" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Hacker News</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="lobsters" checked />
-          <span>Lobsters</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="lobsters" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Lobsters</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="reddit-programming" checked />
-          <span>/r/programming</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="reddit-programming" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">/r/programming</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="reddit-technology" checked />
-          <span>/r/technology</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="reddit-technology" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">/r/technology</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="techcrunch" checked />
-          <span>TechCrunch</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="techcrunch" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">TechCrunch</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="openai-news" checked />
-          <span>OpenAI News</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="openai-news" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">OpenAI News</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="anthropic-news" checked />
-          <span>Anthropic News</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="anthropic-news" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Anthropic News</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="google-blog" checked />
-          <span>Google Blog</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="google-blog" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Google Blog</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="google-developers" checked />
-          <span>Google Developers</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="google-developers" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Google Developers</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="google-research" checked />
-          <span>Google Research</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="google-research" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Google Research</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="google-deepmind" checked />
-          <span>DeepMind</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="google-deepmind" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">DeepMind</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="nvidia-blog" checked />
-          <span>NVIDIA Blog</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="nvidia-blog" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">NVIDIA Blog</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="nvidia-news" checked />
-          <span>NVIDIA News</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="nvidia-news" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">NVIDIA News</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="nvidia-generative-ai" checked />
-          <span>NVIDIA GenAI</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="nvidia-generative-ai" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">NVIDIA GenAI</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="nvidia-developer" checked />
-          <span>NVIDIA Dev</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="nvidia-developer" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">NVIDIA Dev</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="huggingface-blog" checked />
-          <span>Hugging Face</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="huggingface-blog" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Hugging Face</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="microsoft-ai" checked />
-          <span>Microsoft AI</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="microsoft-ai" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Microsoft AI</span>
         </label>
-        <label class="news-source-pill">
-          <input type="checkbox" name="sources" value="x" checked />
-          <span>X</span>
+        <label class="relative cursor-pointer">
+          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="x" checked />
+          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">X</span>
         </label>
       </fieldset>
     </form>

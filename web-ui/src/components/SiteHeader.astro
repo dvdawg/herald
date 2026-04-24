@@ -1,79 +1,21 @@
 ---
 export interface Props {
-  activePage?: "papers" | "news";
   brandLabel?: string;
 }
 
-const { activePage = "papers", brandLabel = "Herald" } = Astro.props;
+const { brandLabel = "Herald" } = Astro.props;
 ---
 
-<header class="site-header">
-  <div class="site-header__inner">
-    <a class="site-brand" href="/">{brandLabel}</a>
-    <nav class="site-nav" aria-label="Primary">
-      <a class:list={["site-nav__link", activePage === "papers" && "is-active"]} href="/">
+<header class="sticky top-0 z-10 border-b border-line-soft/70 bg-[rgba(251,247,239,0.88)] backdrop-blur-[16px]">
+  <div class="mx-auto flex max-w-[1180px] flex-col items-start justify-between gap-4 px-3.5 py-4 sm:flex-row sm:items-center sm:px-5">
+    <a class="text-sm font-extrabold uppercase tracking-[0.08em] no-underline" href="/">{brandLabel}</a>
+    <nav class="flex flex-wrap gap-2.5" aria-label="Primary">
+      <a class="inline-flex items-center rounded-full border border-line/20 bg-white/80 px-3 py-2 text-[0.88rem] font-bold no-underline transition-colors hover:bg-white" href="/">
         Paper Search
       </a>
-      <a class:list={["site-nav__link", activePage === "news" && "is-active"]} href="/news">
+      <a class="inline-flex items-center rounded-full border border-line/20 bg-white/80 px-3 py-2 text-[0.88rem] font-bold no-underline transition-colors hover:bg-white" href="/news">
         News Radar
       </a>
     </nav>
   </div>
 </header>
-
-<style>
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    backdrop-filter: blur(16px);
-    background: rgba(251, 247, 239, 0.88);
-    border-bottom: 1px solid var(--line-soft);
-  }
-
-  .site-header__inner {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .site-brand {
-    text-decoration: none;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .site-nav {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .site-nav__link {
-    text-decoration: none;
-    border: 1.5px solid var(--line);
-    border-radius: 999px;
-    padding: 8px 12px;
-    background: var(--panel);
-    font-size: 0.88rem;
-    font-weight: 700;
-  }
-
-  .site-nav__link.is-active {
-    background: var(--ink);
-    color: #fffdf8;
-  }
-
-  @media (max-width: 620px) {
-    .site-header__inner {
-      padding-inline: 14px;
-      align-items: flex-start;
-      flex-direction: column;
-    }
-  }
-</style>

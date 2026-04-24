@@ -14,6 +14,24 @@ const escapeHtml = (value) =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
 
+const resultItemClass = "overflow-hidden rounded-none border-2 border-line bg-[#fffdf8]";
+const resultRowClass = "grid grid-cols-1 sm:grid-cols-[88px_minmax(0,1fr)]";
+const rankClass =
+  "flex flex-row items-center justify-between gap-1 border-b-2 border-line bg-paper-panel-muted px-3 py-3.5 sm:flex-col sm:items-start sm:justify-between sm:border-r-2 sm:border-b-0";
+const rankLabelClass =
+  "text-[0.72rem] font-bold uppercase tracking-[0.08em] text-muted";
+const rankValueClass = "text-[1.8rem] leading-none font-bold tracking-[-0.05em]";
+const bodyClass = "px-4 pt-3.5 pb-4";
+const metricsClass = "mb-2.5 flex flex-wrap gap-2";
+const metricClass =
+  "rounded-none border border-line bg-paper-panel-muted px-[9px] py-1 text-[0.8rem] leading-[1.2]";
+const authorsClass = "mb-2.5 text-[0.92rem] leading-[1.45] text-muted";
+const summaryClass = "m-0 leading-[1.55] text-[#2f2923]";
+const linkClass =
+  "mt-3 inline-block border-b-2 border-line font-bold no-underline";
+const emptyStateClass =
+  "rounded-none border-2 border-dashed border-line-soft bg-[#f3ede2] p-[18px] text-muted";
+
 const renderResultCard = (item, index) => {
   const title = truncate(String(item.title || "Untitled"), 160);
   const authors = truncate(String((item.authors || []).join(", ") || "Unknown"), 140);
@@ -24,23 +42,23 @@ const renderResultCard = (item, index) => {
   const pdfUrl = item.pdf_url ? String(item.pdf_url) : "";
 
   return `
-    <li class="result-item">
-      <article class="result-item__row">
-        <div class="result-rank">
-          <span class="result-rank__label">Rank</span>
-          <span class="result-rank__value">${escapeHtml(String(rank))}</span>
+    <li class="${resultItemClass}">
+      <article class="${resultRowClass}">
+        <div class="${rankClass}">
+          <span class="${rankLabelClass}">Rank</span>
+          <span class="${rankValueClass}">${escapeHtml(String(rank))}</span>
         </div>
-        <div class="result-body">
-          <h3>${escapeHtml(title)}</h3>
-          <div class="result-metrics">
-            <span class="result-metric"><strong>Score</strong>${escapeHtml(score)}</span>
-            <span class="result-metric"><strong>Published</strong>${escapeHtml(published)}</span>
+        <div class="${bodyClass}">
+          <h3 class="mb-2.5 text-[1.05rem] leading-[1.3] font-semibold">${escapeHtml(title)}</h3>
+          <div class="${metricsClass}">
+            <span class="${metricClass}"><strong class="mr-1">Score</strong>${escapeHtml(score)}</span>
+            <span class="${metricClass}"><strong class="mr-1">Published</strong>${escapeHtml(published)}</span>
           </div>
-          <p class="result-authors">${escapeHtml(authors)}</p>
-          <p class="result-summary">${escapeHtml(summary)}</p>
+          <p class="${authorsClass}">${escapeHtml(authors)}</p>
+          <p class="${summaryClass}">${escapeHtml(summary)}</p>
           ${
             pdfUrl
-              ? `<a class="result-link" href="${escapeHtml(pdfUrl)}" target="_blank" rel="noreferrer">Open PDF</a>`
+              ? `<a class="${linkClass}" href="${escapeHtml(pdfUrl)}" target="_blank" rel="noreferrer">Open PDF</a>`
               : ""
           }
         </div>
@@ -110,7 +128,7 @@ if (form && button && errorBox && resultsBox && debugBox && resultCount) {
       resultCount.textContent = `${results.length} ${results.length === 1 ? "Paper" : "Papers"}`;
 
       if (results.length === 0) {
-        resultsBox.innerHTML = `<li class="empty-state">No results matched this query.</li>`;
+        resultsBox.innerHTML = `<li class="${emptyStateClass}">No results matched this query.</li>`;
       } else {
         resultsBox.innerHTML = results.map((item, index) => renderResultCard(item, index)).join("");
       }
@@ -123,7 +141,7 @@ if (form && button && errorBox && resultsBox && debugBox && resultCount) {
           ? backendHelp
           : message;
       resultCount.textContent = "Run Failed";
-      resultsBox.innerHTML = `<li class="empty-state">The request did not complete. Check the error above and try again.</li>`;
+      resultsBox.innerHTML = `<li class="${emptyStateClass}">The request did not complete. Check the error above and try again.</li>`;
     } finally {
       button.disabled = false;
       button.textContent = "Run Search";

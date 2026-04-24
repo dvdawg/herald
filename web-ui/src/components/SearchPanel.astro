@@ -1,20 +1,31 @@
-<section class="panel">
-  <div class="panel-inner">
-    <div class="panel-header">
-      <h2 class="panel-title">Run Query</h2>
-      <span class="panel-chip">Input</span>
+---
+---
+
+<section class="rounded-none border-2 border-line bg-paper-panel shadow-paper-panel">
+  <div class="p-4 sm:p-[18px]">
+    <div class="mb-4 flex items-baseline justify-between gap-3">
+      <h2 class="m-0 text-base font-bold uppercase tracking-[0.08em]">Run Query</h2>
+      <span class="rounded-none border-[1.5px] border-line bg-paper-panel-muted px-2.5 py-1 text-xs font-bold uppercase tracking-[0.06em]"
+        >Input</span
+      >
     </div>
 
     <form id="run-form">
-      <div class="field">
-        <label for="query">Query</label>
-        <input class="input" id="query" name="query" value="quantum computing" required />
+      <div class="mb-[14px]">
+        <label class="mb-1.5 block text-[0.82rem] font-bold uppercase tracking-[0.06em]" for="query">Query</label>
+        <input
+          class="w-full rounded-none border-[1.5px] border-line bg-[#fffdf8] px-3 py-[11px] text-base text-ink"
+          id="query"
+          name="query"
+          value="quantum computing"
+          required
+        />
       </div>
 
-      <div class="field">
-        <label for="max_results">Max Results</label>
+      <div class="mb-[14px]">
+        <label class="mb-1.5 block text-[0.82rem] font-bold uppercase tracking-[0.06em]" for="max_results">Max Results</label>
         <input
-          class="input"
+          class="w-full rounded-none border-[1.5px] border-line bg-[#fffdf8] px-3 py-[11px] text-base text-ink"
           id="max_results"
           name="max_results"
           type="number"
@@ -24,37 +35,61 @@
         />
       </div>
 
-      <div class="field">
-        <label for="top_k">Top K</label>
-        <input class="input" id="top_k" name="top_k" type="number" min="1" max="200" value="10" />
+      <div class="mb-[14px]">
+        <label class="mb-1.5 block text-[0.82rem] font-bold uppercase tracking-[0.06em]" for="top_k">Top K</label>
+        <input
+          class="w-full rounded-none border-[1.5px] border-line bg-[#fffdf8] px-3 py-[11px] text-base text-ink"
+          id="top_k"
+          name="top_k"
+          type="number"
+          min="1"
+          max="200"
+          value="10"
+        />
       </div>
 
-      <div class="field field--row">
-        <div class="field">
-          <label for="date_from">From</label>
-          <input class="input" id="date_from" name="date_from" type="month" placeholder="YYYY-MM" />
+      <div class="mb-[14px] grid gap-3 sm:grid-cols-2">
+        <div>
+          <label class="mb-1.5 block text-[0.82rem] font-bold uppercase tracking-[0.06em]" for="date_from">From</label>
+          <input
+            class="w-full rounded-none border-[1.5px] border-line bg-[#fffdf8] px-3 py-[11px] text-base text-ink"
+            id="date_from"
+            name="date_from"
+            type="month"
+            placeholder="YYYY-MM"
+          />
         </div>
-        <div class="field">
-          <label for="date_to">To</label>
-          <input class="input" id="date_to" name="date_to" type="month" placeholder="YYYY-MM" />
+        <div>
+          <label class="mb-1.5 block text-[0.82rem] font-bold uppercase tracking-[0.06em]" for="date_to">To</label>
+          <input
+            class="w-full rounded-none border-[1.5px] border-line bg-[#fffdf8] px-3 py-[11px] text-base text-ink"
+            id="date_to"
+            name="date_to"
+            type="month"
+            placeholder="YYYY-MM"
+          />
         </div>
-        <span class="field-hint">Optional date range filter.</span>
+        <span class="mt-[5px] block text-[0.82rem] leading-[1.35] text-muted sm:col-span-2">Optional date range filter.</span>
       </div>
 
-      <div class="field">
-        <label for="weights">Weights</label>
+      <div class="mb-[18px]">
+        <label class="mb-1.5 block text-[0.82rem] font-bold uppercase tracking-[0.06em]" for="weights">Weights</label>
         <textarea
-          class="textarea"
+          class="min-h-[108px] w-full resize-y rounded-none border-[1.5px] border-line bg-[#fffdf8] px-3 py-[11px] text-base text-ink"
           id="weights"
           name="weights"
           rows="4"
           placeholder='{"relevance": 0.7, "recency": 0.2, "citations": 0.1}'
         ></textarea>
-        <span class="field-hint">Optional JSON override for the ranking weights.</span>
+        <span class="mt-[5px] block text-[0.82rem] leading-[1.35] text-muted">Optional JSON override for the ranking weights.</span>
       </div>
 
-      <div class="actions">
-        <button id="run-btn" class="button" type="submit">Run Search</button>
+      <div class="flex justify-start">
+        <button
+          id="run-btn"
+          class="cursor-pointer rounded-none border-2 border-line bg-[#22201c] px-4 py-2.5 font-bold text-[#fffdf8] disabled:cursor-wait disabled:opacity-70"
+          type="submit">Run Search</button
+        >
       </div>
     </form>
   </div>

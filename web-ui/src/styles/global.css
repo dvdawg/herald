@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  --color-ink: #181511;
+  --color-muted: #5f564a;
+  --color-accent: #b44c2f;
+  --color-line: #181511;
+  --color-line-soft: #b8ad9d;
+  --color-paper-bg: #e8decd;
+  --color-paper-panel: #fbf7ef;
+  --color-paper-panel-strong: #f3ead8;
+  --color-paper-panel-muted: #e6d8c1;
+  --color-news-panel: #fffdf8;
+  --shadow-paper-panel: 8px 8px 0 rgba(24, 21, 17, 0.08);
+}
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html,
+  body {
+    @apply m-0 min-h-full;
+  }
+
+  body {
+    @apply font-sans text-ink antialiased;
+  }
+
+  a {
+    @apply text-inherit;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+}
