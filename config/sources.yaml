@@ -1,0 +1,243 @@
+# Herald news source registry.
+# Each entry is fetched by the adapter named in `kind`.
+# Importance is a baseline weight in [0,1].
+sources:
+  # --- Aggregators / communities ---
+  - id: hackernews
+    kind: hackernews
+    label: Hacker News
+    importance: 0.62
+  - id: lobsters
+    kind: rss
+    url: https://lobste.rs/rss
+    label: Lobsters
+    importance: 0.54
+  - id: reddit-programming
+    kind: rss
+    url: https://www.reddit.com/r/programming/.rss
+    label: Reddit /r/programming
+    importance: 0.56
+  - id: reddit-technology
+    kind: rss
+    url: https://www.reddit.com/r/technology/.rss
+    label: Reddit /r/technology
+    importance: 0.58
+  - id: reddit-machinelearning
+    kind: rss
+    url: https://www.reddit.com/r/MachineLearning/.rss
+    label: Reddit /r/MachineLearning
+    importance: 0.66
+  - id: reddit-localllama
+    kind: rss
+    url: https://www.reddit.com/r/LocalLLaMA/.rss
+    label: Reddit /r/LocalLLaMA
+    importance: 0.62
+  - id: github-trending
+    kind: rss
+    url: https://github-trending-rss.fly.dev/daily.xml
+    label: GitHub Trending
+    importance: 0.6
+  - id: product-hunt
+    kind: rss
+    url: https://www.producthunt.com/feed
+    label: Product Hunt
+    importance: 0.52
+
+  # --- Tech press ---
+  - id: techcrunch
+    kind: rss
+    url: https://techcrunch.com/feed/
+    label: TechCrunch
+    importance: 0.66
+  - id: the-verge
+    kind: rss
+    url: https://www.theverge.com/rss/index.xml
+    label: The Verge
+    importance: 0.68
+  - id: ars-technica
+    kind: rss
+    url: https://feeds.arstechnica.com/arstechnica/index
+    label: Ars Technica
+    importance: 0.7
+  - id: wired
+    kind: rss
+    url: https://www.wired.com/feed/rss
+    label: Wired
+    importance: 0.66
+  - id: ft-tech
+    kind: rss
+    url: https://www.ft.com/technology?format=rss
+    label: FT Technology
+    importance: 0.74
+  - id: bloomberg-tech
+    kind: rss
+    url: https://feeds.bloomberg.com/technology/news.rss
+    label: Bloomberg Technology
+    importance: 0.74
+  - id: stratechery
+    kind: rss
+    url: https://stratechery.com/feed/
+    label: Stratechery
+    importance: 0.72
+  - id: semianalysis
+    kind: rss
+    url: https://www.semianalysis.com/feed
+    label: SemiAnalysis
+    importance: 0.78
+  - id: latent-space
+    kind: rss
+    url: https://www.latent.space/feed
+    label: Latent Space
+    importance: 0.7
+  - id: import-ai
+    kind: rss
+    url: https://importai.substack.com/feed
+    label: Import AI (Jack Clark)
+    importance: 0.72
+  - id: simon-willison
+    kind: rss
+    url: https://simonwillison.net/atom/everything/
+    label: Simon Willison
+    importance: 0.7
+  - id: the-information
+    kind: rss
+    url: https://www.theinformation.com/feed
+    label: The Information
+    importance: 0.74
+
+  # --- Lab / vendor blogs ---
+  - id: openai-news
+    kind: rss
+    url: https://openai.com/news/rss.xml
+    label: OpenAI News
+    importance: 0.88
+  - id: anthropic-news
+    kind: anthropic
+    url: https://www.anthropic.com/news
+    label: Anthropic News
+    importance: 0.86
+  - id: google-blog
+    kind: rss
+    url: https://blog.google/rss/
+    label: Google Blog
+    importance: 0.74
+  - id: google-developers
+    kind: rss
+    url: https://developers.googleblog.com/feeds/posts/default?alt=rss
+    label: Google Developers Blog
+    importance: 0.72
+  - id: google-research
+    kind: rss
+    url: https://research.google/blog/rss/
+    label: Google Research Blog
+    importance: 0.82
+  - id: google-deepmind
+    kind: rss
+    url: https://deepmind.google/blog/rss.xml
+    label: Google DeepMind Blog
+    importance: 0.86
+  - id: nvidia-blog
+    kind: rss
+    url: https://feeds.feedburner.com/nvidiablog
+    label: NVIDIA Blog
+    importance: 0.72
+  - id: nvidia-news
+    kind: rss
+    url: https://nvidianews.nvidia.com/all-news.xml
+    label: NVIDIA Newsroom
+    importance: 0.8
+  - id: nvidia-generative-ai
+    kind: rss
+    url: https://nvidianews.nvidia.com/cats/generative_al.xml
+    label: NVIDIA Generative AI
+    importance: 0.76
+  - id: nvidia-developer
+    kind: rss
+    url: https://developer.nvidia.com/blog/feed/
+    label: NVIDIA Developer Blog
+    importance: 0.68
+  - id: huggingface-blog
+    kind: rss
+    url: https://huggingface.co/blog/feed.xml
+    label: Hugging Face Blog
+    importance: 0.64
+  - id: microsoft-ai
+    kind: rss
+    url: https://blogs.microsoft.com/ai/feed/
+    label: Microsoft AI Blog
+    importance: 0.78
+  - id: meta-ai
+    kind: rss
+    url: https://ai.meta.com/blog/rss/
+    label: Meta AI Blog
+    importance: 0.78
+  - id: apple-ml
+    kind: rss
+    url: https://machinelearning.apple.com/rss.xml
+    label: Apple Machine Learning
+    importance: 0.7
+  - id: cohere-blog
+    kind: rss
+    url: https://cohere.com/blog/rss.xml
+    label: Cohere Blog
+    importance: 0.62
+  - id: mistral-news
+    kind: rss
+    url: https://mistral.ai/news/rss.xml
+    label: Mistral News
+    importance: 0.72
+  - id: xai-news
+    kind: rss
+    url: https://x.ai/blog/rss.xml
+    label: xAI News
+    importance: 0.7
+  - id: stability-ai
+    kind: rss
+    url: https://stability.ai/news?format=rss
+    label: Stability AI
+    importance: 0.6
+
+  # --- Research feeds (papers — surfaced via /api/papers/search, not the news feed) ---
+  - id: arxiv-cs-cl
+    kind: rss
+    url: https://export.arxiv.org/rss/cs.CL
+    label: arXiv cs.CL
+    importance: 0.66
+    category: paper
+  - id: arxiv-cs-lg
+    kind: rss
+    url: https://export.arxiv.org/rss/cs.LG
+    label: arXiv cs.LG
+    importance: 0.66
+    category: paper
+  - id: arxiv-cs-ai
+    kind: rss
+    url: https://export.arxiv.org/rss/cs.AI
+    label: arXiv cs.AI
+    importance: 0.66
+    category: paper
+  - id: papers-with-code
+    kind: rss
+    url: https://paperswithcode.com/latest/rss.xml
+    label: Papers with Code
+    importance: 0.6
+    category: paper
+  - id: arxiv-sanity
+    kind: rss
+    url: https://arxiv-sanity-lite.com/?rank=time&pid=&time_filter=7&svm_c=0.01&skip_have=no&format=rss
+    label: Arxiv Sanity
+    importance: 0.58
+    category: paper
+
+  # --- Policy / governance ---
+  - id: nist-ai
+    kind: rss
+    url: https://www.nist.gov/news-events/news/rss.xml
+    label: NIST News
+    importance: 0.66
+
+  # --- X / Twitter (optional via bridge) ---
+  - id: x
+    kind: x-bridge
+    label: X
+    importance: 0.5

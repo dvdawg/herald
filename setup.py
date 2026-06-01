@@ -2,11 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name="herald",
-    version="0.1.0",
+    version="0.3.0",
     packages=find_packages(),
     install_requires=[
-        "arxiv>=2.3.1",
-        "nltk>=3.8.1",
         "sentence-transformers>=2.2.2",
         "torch>=2.1.0",
         "scikit-learn>=1.3.0",
@@ -15,11 +13,8 @@ setup(
         "pyyaml>=6.0",
         "fastapi>=0.110.0",
         "uvicorn>=0.29.0",
+        "feedparser>=6.0.10",
+        "beautifulsoup4>=4.12.0",
     ],
-    python_requires=">=3.8",
-    entry_points={
-        'console_scripts': [
-            'herald=src.pipeline:main',
-        ],
-    },
-) 
+    python_requires=">=3.9",
+)

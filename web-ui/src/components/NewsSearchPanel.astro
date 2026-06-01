@@ -11,25 +11,40 @@
           </p>
           <h2 class="m-0 text-[0.95rem] leading-[1.1] font-semibold text-[#154272]">Shape the feed</h2>
         </div>
-        <button
-          id="news-run-btn"
-          class="cursor-pointer rounded-lg border border-transparent bg-[#1a73e8] px-[9px] py-1.5 text-[0.72rem] font-bold text-white shadow-[0_5px_12px_rgba(26,115,232,0.18)] disabled:cursor-wait disabled:opacity-70"
-          type="submit">Refresh Feed</button
-        >
+        <div class="flex flex-wrap items-center gap-1.5">
+          <div id="news-mode-toggle" class="inline-flex overflow-hidden rounded-lg border border-[rgba(93,112,141,0.28)] bg-white text-[0.7rem] font-bold text-[#35516f]">
+            <button type="button" data-mode="discover" class="cursor-pointer px-2.5 py-1.5 transition data-[active=true]:bg-[#1a73e8] data-[active=true]:text-white" data-active="true">Top stories</button>
+            <button type="button" data-mode="for_you" class="cursor-pointer px-2.5 py-1.5 transition data-[active=true]:bg-[#1a73e8] data-[active=true]:text-white">For you</button>
+          </div>
+          <button
+            id="news-trending-btn"
+            class="cursor-pointer rounded-lg border border-[rgba(93,112,141,0.28)] bg-white px-[9px] py-1.5 text-[0.72rem] font-bold text-[#35516f] disabled:cursor-wait disabled:opacity-70"
+            type="button">Trending</button>
+          <button
+            id="news-run-btn"
+            class="cursor-pointer rounded-lg border border-transparent bg-[#1a73e8] px-[9px] py-1.5 text-[0.72rem] font-bold text-white shadow-[0_5px_12px_rgba(26,115,232,0.18)] disabled:cursor-wait disabled:opacity-70"
+            type="submit">Refresh</button>
+        </div>
+      </div>
+
+      <div id="news-tags-row" class="flex flex-wrap items-center gap-1.5">
+        <span class="mr-1 text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">Topics</span>
+        <button type="button" data-tag="" class="cursor-pointer rounded-full border border-[rgba(93,112,141,0.28)] bg-white px-2.5 py-1 text-[0.68rem] font-semibold text-[#35516f] transition data-[active=true]:border-[#1a73e8] data-[active=true]:bg-[#d8ecff] data-[active=true]:text-[#14679c]" data-active="true">All</button>
+        <span id="news-tags-placeholder" class="text-[0.7rem] text-[#7a8aa6]">Loading tags…</span>
       </div>
 
       <div class="grid gap-2 lg:grid-cols-[minmax(0,1.65fr)_minmax(280px,0.9fr)]">
         <label class="grid gap-[3px]">
-          <span class="text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">Topic</span>
+          <span class="text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">Search</span>
           <input
             class="min-h-7 w-full rounded-lg border border-[rgba(84,112,153,0.22)] bg-[rgba(255,255,255,0.95)] px-2 py-[5px] text-[0.72rem] text-ink"
             id="news-query"
             name="query"
-            placeholder="Optional topic"
+            placeholder="Search the feed (optional)"
           />
         </label>
 
-        <div class="grid gap-1.5 sm:grid-cols-2">
+        <div class="grid gap-1.5 sm:grid-cols-[1fr_auto]">
           <label class="grid gap-[3px]">
             <span class="text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">Stories</span>
             <input
@@ -42,98 +57,28 @@
               value="20"
             />
           </label>
-          <label class="grid gap-[3px]">
+          <div class="grid gap-[3px]">
             <span class="text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">Window</span>
-            <input
-              class="min-h-7 w-full rounded-lg border border-[rgba(84,112,153,0.22)] bg-[rgba(255,255,255,0.95)] px-2 py-[5px] text-[0.72rem] text-ink"
-              id="hours_back"
-              name="hours_back"
-              type="number"
-              min="1"
-              max="720"
-              value="72"
-            />
-          </label>
+            <div id="news-window-toggle" class="inline-flex overflow-hidden rounded-lg border border-[rgba(84,112,153,0.22)] bg-white text-[0.68rem] font-semibold text-[#35516f]">
+              <button type="button" data-window="24h" data-hours="24" class="cursor-pointer px-2 py-1 transition data-[active=true]:bg-[#1a73e8] data-[active=true]:text-white" data-active="true">24h</button>
+              <button type="button" data-window="7d" data-hours="168" class="cursor-pointer px-2 py-1 transition data-[active=true]:bg-[#1a73e8] data-[active=true]:text-white">7d</button>
+              <button type="button" data-window="30d" data-hours="720" class="cursor-pointer px-2 py-1 transition data-[active=true]:bg-[#1a73e8] data-[active=true]:text-white">30d</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <fieldset class="m-0 flex flex-wrap gap-[5px] border-0 p-0">
-        <legend class="mb-0 w-full p-0 text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">
-          Sources
-        </legend>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="hackernews" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Hacker News</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="lobsters" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Lobsters</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="reddit-programming" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">/r/programming</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="reddit-technology" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">/r/technology</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="techcrunch" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">TechCrunch</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="openai-news" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">OpenAI News</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="anthropic-news" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Anthropic News</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="google-blog" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Google Blog</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="google-developers" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Google Developers</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="google-research" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Google Research</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="google-deepmind" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">DeepMind</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="nvidia-blog" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">NVIDIA Blog</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="nvidia-news" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">NVIDIA News</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="nvidia-generative-ai" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">NVIDIA GenAI</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="nvidia-developer" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">NVIDIA Dev</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="huggingface-blog" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Hugging Face</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="microsoft-ai" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">Microsoft AI</span>
-        </label>
-        <label class="relative cursor-pointer">
-          <input class="peer absolute opacity-0 pointer-events-none" type="checkbox" name="sources" value="x" checked />
-          <span class="inline-flex min-h-6 items-center rounded-lg border border-[rgba(93,112,141,0.28)] bg-[rgba(255,255,255,0.94)] px-2 text-[0.68rem] font-semibold text-[#35516f] transition peer-checked:border-[#d8ecff] peer-checked:bg-[#d8ecff] peer-checked:text-[#14679c]">X</span>
-        </label>
-      </fieldset>
+      <details class="rounded-lg border border-[rgba(84,112,153,0.18)] bg-white px-2 py-1.5 text-[0.7rem] text-[#445b80]">
+        <summary class="cursor-pointer select-none text-[0.6rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">Advanced — pick sources</summary>
+        <fieldset id="news-sources-list" class="m-0 mt-2 flex flex-wrap gap-[5px] border-0 p-0">
+          <legend class="mb-0 w-full p-0 text-[0.56rem] font-bold uppercase tracking-[0.08em] text-[#60728f]">
+            Sources <span id="news-sources-count" class="ml-1 text-[#94a2bd]"></span>
+            <button id="news-sources-all" class="ml-2 cursor-pointer underline" type="button">all</button>
+            <button id="news-sources-none" class="ml-1 cursor-pointer underline" type="button">none</button>
+          </legend>
+          <span id="news-sources-placeholder" class="text-[0.7rem] text-[#7a8aa6]">Loading sources…</span>
+        </fieldset>
+      </details>
     </form>
   </div>
 </section>

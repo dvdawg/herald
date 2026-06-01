@@ -1,0 +1,180 @@
+# Curated tag taxonomy for default feeds.
+# Each tag matches an article when:
+#   - any keyword (substring) appears in title+summary (lowercased), OR
+#   - any source_tag (case-insensitive) appears in the article's tags list.
+tags:
+  - id: ai
+    label: AI
+    description: LLMs, agents, frontier models, safety, alignment.
+    keywords:
+      - " ai "
+      - "ai-"
+      - " ml "
+      - llm
+      - llms
+      - gpt
+      - claude
+      - gemini
+      - openai
+      - anthropic
+      - deepmind
+      - mistral
+      - llama
+      - transformer
+      - diffusion
+      - neural network
+      - machine learning
+      - generative ai
+      - alignment
+      - rlhf
+      - foundation model
+      - frontier model
+      - inference
+      - fine-tune
+      - agent
+      - agents
+    source_tags: [ai, ml, llm, gpt, openai, anthropic, machine-learning]
+
+  - id: security
+    label: Security
+    description: Vulnerabilities, breaches, exploits, privacy.
+    keywords:
+      - security
+      - vulnerability
+      - breach
+      - exploit
+      - zero-day
+      - 0-day
+      - malware
+      - ransomware
+      - phishing
+      - cve
+      - patch
+      - hack
+      - leaked
+      - leak
+      - privacy
+      - encryption
+      - cryptography
+      - backdoor
+    source_tags: [security, privacy, hacking, infosec]
+
+  - id: chips
+    label: Chips & Hardware
+    description: Semiconductors, GPUs, datacenters, robotics.
+    keywords:
+      - chip
+      - gpu
+      - tpu
+      - cpu
+      - silicon
+      - semiconductor
+      - nvidia
+      - amd
+      - intel
+      - tsmc
+      - arm
+      - datacenter
+      - data center
+      - robot
+      - robotics
+      - quantum
+      - foundry
+      - wafer
+    source_tags: [hardware, chips, gpu, robotics, quantum]
+
+  - id: policy
+    label: Policy & Regulation
+    description: Regulation, antitrust, lawsuits, government tech.
+    keywords:
+      - regulation
+      - regulator
+      - lawsuit
+      - antitrust
+      - ftc
+      - sec
+      - eu
+      - congress
+      - senate
+      - executive order
+      - ban
+      - court
+      - judge
+      - settlement
+      - sanction
+      - export control
+      - policy
+      - compliance
+      - copyright
+    source_tags: [policy, regulation, law, government]
+
+  - id: startups
+    label: Startups & Funding
+    description: Funding rounds, IPOs, M&A, founders.
+    keywords:
+      - funding
+      - seed round
+      - series a
+      - series b
+      - series c
+      - raises
+      - raised
+      - valuation
+      - ipo
+      - acquires
+      - acquisition
+      - merger
+      - y combinator
+      - yc
+      - startup
+      - venture
+      - vc
+    source_tags: [startup, startups, funding, venture, yc]
+
+  - id: dev-tools
+    label: Dev Tools
+    description: Programming, frameworks, devops, open source.
+    keywords:
+      - programming
+      - framework
+      - library
+      - sdk
+      - api
+      - open-source
+      - open source
+      - rust
+      - python
+      - javascript
+      - typescript
+      - golang
+      - kubernetes
+      - docker
+      - postgres
+      - sqlite
+      - github
+      - compiler
+      - language
+      - devops
+    source_tags: [programming, dev, devops, opensource, github]
+
+  - id: science
+    label: Science
+    description: Research, biotech, physics, climate tech.
+    keywords:
+      - research
+      - paper
+      - study
+      - biotech
+      - genome
+      - dna
+      - protein
+      - climate
+      - fusion
+      - physics
+      - chemistry
+      - nasa
+      - spacex
+      - space
+      - rocket
+      - satellite
+    source_tags: [science, research, biotech, space]

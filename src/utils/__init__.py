@@ -1,8 +1,4 @@
-"""
-Utility modules for Herald.
-"""
-from .citation_fetcher import CitationFetcher
+"""Utility modules for Herald."""
 from .config_loader import ConfigLoader
 
-__all__ = ['CitationFetcher', 'ConfigLoader']
-
+__all__ = ["ConfigLoader"]

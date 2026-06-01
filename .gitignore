@@ -48,3 +48,9 @@ temp/
 web-ui/node_modules/
 web-ui/dist/
 
+# Herald runtime data (SQLite)
+data/
+
+# Local agent / IDE settings
+.claude/
+
